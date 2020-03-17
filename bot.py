@@ -17,12 +17,18 @@ def bot_rep(text):
     reply = data['message'].strip()
     return reply
 
-def print_and_speak(text, lang='vi'):
-    print("Bot:", text)
-    tts = gTTS(text, lang=lang)
-    tts.save('buff.mp3')
-    os.system("mpg123 -q buff.mp3") 
+def print_and_speak(text, lang='vi', file=None):
+    print("Bot:\n  +--->", text)
 
+    if file is not None:
+        os.system("mpg123 -q " + file) 
+        return
+    tts = gTTS(text, lang=lang)
+    try:
+        tts.save('buff.mp3')
+        os.system("mpg123 -q buff.mp3") 
+    except gtts.tts.gTTSError:
+        print("No internet connection")
 
 r = sr.Recognizer() 
   
@@ -39,30 +45,30 @@ device_id = 7
 #which device ID to specifically look for incase the microphone  
 #is not working, an error will pop up saying "device_id undefined" 
 
+os.system('clear && clear')
 text = ""
 while "dừng lại" not in text:
     with sr.Microphone(device_index = device_id, sample_rate = sample_rate,  
                             chunk_size = chunk_size) as source: 
+        print ("Bạn:")
         #wait for a second to let the recognizer adjust the  
         #energy threshold based on the surrounding noise level 
         r.adjust_for_ambient_noise(source) 
-        print ("Bạn:", end="")
         #listens for the user's input 
         audio = r.listen(source) 
-
         try: 
             text = r.recognize_google(audio, language='vi-VN') 
-            print (text)
+            print ('  +--->'+text)
             reply = bot_rep(text)
             print_and_speak(reply)
         #error occurs when google could not understand what was said 
 
         except sr.UnknownValueError: 
             print()
-            print_and_speak("Xin lỗi tôi không hiểu bạn nói gì") 
+            print_and_speak("Xin lỗi tôi không hiểu bạn nói gì", file='sorry.mp3') 
 #             print("")
         except sr.RequestError as e: 
             print("Không thể kết nối Google; {0}".format(e)) 
 
-print_and_speak("Hẹn gặp bạn lần sau")
+print_and_speak("Hẹn gặp bạn lần sau", file='goodbye.mp3')
 os.system('exit')
