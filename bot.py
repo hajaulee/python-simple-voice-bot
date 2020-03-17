@@ -64,7 +64,7 @@ while "dừng lại" not in text:
         #error occurs when google could not understand what was said 
 
         except sr.UnknownValueError: 
-            print('%&UH&7GBY&76%*y%^&H**YUJU*U&G')
+            print('  +--->%&UH&7GBY&76%*y%^&H**YUJU*U&G')
             print_and_speak("Xin lỗi tôi không hiểu bạn nói gì", file='sorry.mp3') 
 #             print("")
         except sr.RequestError as e: 
