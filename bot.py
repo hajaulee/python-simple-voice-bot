@@ -20,8 +20,8 @@ def bot_rep(text):
 def print_and_speak(text, lang='vi'):
     print("Bot:", text)
     tts = gTTS(text, lang=lang)
-    tts.save('hello.mp3')
-    os.system("mpg123 hello.mp3") 
+    tts.save('buff.mp3')
+    os.system("mpg123 -q buff.mp3") 
 
 
 r = sr.Recognizer() 
@@ -58,10 +58,11 @@ while "dừng lại" not in text:
         #error occurs when google could not understand what was said 
 
         except sr.UnknownValueError: 
-            print("Google Speech Recognition could not understand audio") 
+            print()
+            print_and_speak("Xin lỗi tôi không hiểu bạn nói gì") 
 #             print("")
         except sr.RequestError as e: 
-            print("Could not request results from Google Speech Recognition service; {0}".format(e)) 
+            print("Không thể kết nối Google; {0}".format(e)) 
 
 print_and_speak("Hẹn gặp bạn lần sau")
 os.system('exit')
