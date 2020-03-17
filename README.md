@@ -32,3 +32,27 @@ Modify `device_id`
 2. *No internet connection*
 
 This example use Google API, so it requires internet connection to work.
+
+## Demo
+
+```
+Bạn:
+  +--->thôi thử lại nhé lần trước bậy quá
+Bot:
+  +---> Bye bạn tí nói chuyện nữa nhé
+Bạn:
+  +--->Yamaha mới bắt đầu bye con kẹc
+Bot:
+  +---> Thế thì làm lại thôi
+Bạn:
+  +--->thích chó không
+Bot:
+  +---> Em rất thích chó
+Bạn:
+  +--->ok dừng lại
+Bot:
+  +---> ko đâu...*đâm lên tục*
+Bot:
+  +---> Hẹn gặp bạn lần sau
+
+```
