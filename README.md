@@ -1,4 +1,4 @@
-#Simple voice bot with Google API in python
+# Simple voice bot with Google API in python
 
 ## Prepare
 
